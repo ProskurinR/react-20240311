@@ -1,4 +1,4 @@
-import { Menus } from "../menus/component";
+import { Menu } from "../menu/component";
 import { Reviews } from "../reviews/component";
 
 export const Restaurant = ({ restaurant }) => {
@@ -15,7 +15,7 @@ export const Restaurant = ({ restaurant }) => {
       {!!menu?.length && (
         <div>
           <h3>Menu</h3>
-          <Menus menu={menu} />
+          <Menu dishes={menu} />
         </div>
       )}
 
