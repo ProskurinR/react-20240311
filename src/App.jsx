@@ -2,29 +2,30 @@ import { useState } from "react";
 import { Layout } from "./components/layout/component";
 import { Restaurant } from "./components/restaurant/component";
 import { restaurants } from "./constants/mock";
-import { useEffect } from "react";
 import { RestaurantTabs } from "./components/restaurant-tabs/component";
+import { getStorageItem } from "./utils/storage";
+import { setStorageItem } from "./utils/storage";
 
-const getSavedCurrentRestaurantIndex = () =>
-  Number(localStorage.getItem("currentRestaurantIndex"));
+const ACTIVE_RESTARAUNT_INDEX_STORAGE_KEY = "activeRestarauntIndex";
 
 export const App = () => {
-  const [currentRestaurantIndex, setCurrentRestaurantIndex] = useState(
-    getSavedCurrentRestaurantIndex
+  const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(() =>
+    Number(getStorageItem(ACTIVE_RESTARAUNT_INDEX_STORAGE_KEY))
   );
 
-  useEffect(() => {
-    localStorage.setItem("currentRestaurantIndex", currentRestaurantIndex);
-  }, [currentRestaurantIndex]);
+  const activeRestaurant = restaurants[activeRestaurantIndex];
 
   return (
     <Layout>
       <RestaurantTabs
         restaurants={restaurants}
-        currentIndex={currentRestaurantIndex}
-        onTabClick={setCurrentRestaurantIndex}
+        onTabClick={(index) => {
+          setActiveRestaurantIndex(index);
+          setStorageItem(ACTIVE_RESTARAUNT_INDEX_STORAGE_KEY, index);
+        }}
+        activeTabIndex={activeRestaurantIndex}
       />
-      <Restaurant restaurant={restaurants[currentRestaurantIndex]} />
+      {activeRestaurant ? <Restaurant restaurant={activeRestaurant} /> : ""}
     </Layout>
   );
 };

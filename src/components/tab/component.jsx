@@ -1,4 +1,4 @@
-export const Tab = ({ title, isActive, onClick }) => {
+export const Tab = ({ title, onClick, isActive }) => {
   return (
     <button onClick={onClick} disabled={isActive}>
       {title}
