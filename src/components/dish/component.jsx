@@ -1,19 +1,22 @@
 import { useCount } from "../../hooks/use-count";
+import { Button } from "../button/component";
+import styles from "./styles.module.scss";
+import classNames from "classnames";
 
 export const Dish = ({ dish }) => {
   const { amount, increment, decrement } = useCount();
 
   return (
-    <div>
+    <div className={classNames(styles.root)}>
       {dish.name}
       <div>
-        <button onClick={increment} disabled={amount === 5}>
+        <Button onClick={increment} disabled={amount === 5}>
           +
-        </button>
-        {amount}
-        <button onClick={decrement} disabled={amount === 0}>
+        </Button>
+        <span className={classNames(styles.paddingLeft)}>{amount}</span>
+        <Button onClick={decrement} disabled={amount === 0}>
           -
-        </button>
+        </Button>
       </div>
     </div>
   );
