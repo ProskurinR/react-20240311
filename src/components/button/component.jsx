@@ -1,21 +1,23 @@
 import styles from "./styles.module.scss";
 import classNames from "classnames";
-import { useContext } from "react";
-import { ThemeContext } from "../../contexts/theme";
-import { UserContext } from "../../contexts/user";
+import { useCurrentTheme } from "../../contexts/theme";
 
-export const Button = ({ children, onClick, disabled }) => {
-  const theme = useContext(ThemeContext);
-  const user = useContext(UserContext);
+export const Button = ({
+  children,
+  onClick,
+  disabled,
+  className,
+  size = "l",
+}) => {
+  const theme = useCurrentTheme();
 
   return (
     <button
       onClick={onClick}
       disabled={disabled}
-      className={classNames(styles.root, {
+      className={classNames(styles.root, className, styles[size], {
         [styles.disabled]: disabled,
-        [styles.dark]: theme === "dark",
-        [styles.invisible]: user.length === 0,
+        [styles.dark]: theme.theme === "dark",
       })}
     >
       {children}

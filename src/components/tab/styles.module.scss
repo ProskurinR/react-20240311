@@ -1,3 +1,5 @@
-.root {
-  padding: 0px 5px;
+.action {
+  &:only-child {
+    margin-right: 5px;
+  }
 }

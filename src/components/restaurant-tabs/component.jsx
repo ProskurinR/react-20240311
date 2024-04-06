@@ -11,6 +11,7 @@ export const RestaurantTabs = ({ restaurants, onTabClick, activeTabIndex }) => {
           title={restaurant.name}
           onClick={() => onTabClick(index)}
           isActive={index === activeTabIndex}
+          className={styles.action}
         />
       ))}
     </div>

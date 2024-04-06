@@ -1,11 +1,10 @@
 import { Button } from "../button/component";
 import styles from "./styles.module.scss";
-import classNames from "classnames";
 
-export const Tab = ({ title, onClick, isActive }) => {
+export const Tab = ({ title, onClick, isActive, className }) => {
   return (
-    <span className={classNames(styles.root)}>
-      <Button onClick={onClick} disabled={isActive}>
+    <span className={className}>
+      <Button onClick={onClick} disabled={isActive} className={styles.action}>
         {title}
         {isActive && " - Active"}
       </Button>

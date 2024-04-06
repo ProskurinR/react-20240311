@@ -1,23 +1,38 @@
+import { SIZES } from "../../constants/sizes";
+import { useCurrentUser } from "../../contexts/user";
 import { useCount } from "../../hooks/use-count";
 import { Button } from "../button/component";
 import styles from "./styles.module.scss";
-import classNames from "classnames";
 
-export const Dish = ({ dish }) => {
+export const Dish = ({ dish, className }) => {
   const { amount, increment, decrement } = useCount();
+  const { user } = useCurrentUser();
 
   return (
-    <div className={classNames(styles.root)}>
+    <div className={className}>
       {dish.name}
-      <div>
-        <Button onClick={increment} disabled={amount === 5}>
-          +
-        </Button>
-        <span className={classNames(styles.paddingLeft)}>{amount}</span>
-        <Button onClick={decrement} disabled={amount === 0}>
-          -
-        </Button>
-      </div>
+
+      {!!user && (
+        <div>
+          <Button
+            onClick={increment}
+            disabled={amount === 5}
+            size={SIZES.s}
+            className={styles.action}
+          >
+            +
+          </Button>
+          <span>{amount}</span>
+          <Button
+            onClick={decrement}
+            disabled={amount === 0}
+            size={SIZES.s}
+            className={styles.action}
+          >
+            –
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
