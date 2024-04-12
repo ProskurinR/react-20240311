@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
 import { Menu } from "../menu/component";
 import { Reviews } from "../reviews/component";
+import { selectRestaurantById } from "../../redux/entities/restaurant/selectors";
 
 export const Restaurant = ({ restaurantId }) => {
-  const restaurant = useSelector(
-    (state) => state.restaurant.entities[restaurantId]
+  const restaurant = useSelector((state) =>
+    selectRestaurantById(state, restaurantId)
   );
 
   if (!restaurant) {
@@ -20,14 +21,14 @@ export const Restaurant = ({ restaurantId }) => {
       {!!menu?.length && (
         <div>
           <h3>Menu</h3>
-          <Menu dishesIds={menu} />
+          <Menu restaurantId={restaurantId} />
         </div>
       )}
 
       {!!reviews?.length && (
         <div>
           <h3>Reviews</h3>
-          <Reviews reviewIds={reviews} />
+          <Reviews restaurantId={restaurantId} />
         </div>
       )}
     </div>
