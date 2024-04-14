@@ -1,34 +1,26 @@
-import { useSelector } from "react-redux";
-import { Menu } from "../menu/component";
-import { Reviews } from "../reviews/component";
-import { selectRestaurantById } from "../../redux/entities/restaurant/selectors";
+import styles from "./styles.module.scss";
+import classNames from "classnames";
+import { MenuContainer } from "../menu/container";
+import { ReviewsContainer } from "../reviews/container";
 
-export const Restaurant = ({ restaurantId }) => {
-  const restaurant = useSelector((state) =>
-    selectRestaurantById(state, restaurantId)
-  );
-
-  if (!restaurant) {
-    return null;
-  }
-
-  const { name, menu, reviews } = restaurant;
+export const Restaurant = ({ restaurant }) => {
+  const { id, name, menu, reviews } = restaurant;
 
   return (
-    <div>
+    <div className={classNames(styles.root)}>
       <h2>{name ? name : "noname"}</h2>
 
       {!!menu?.length && (
         <div>
           <h3>Menu</h3>
-          <Menu restaurantId={restaurantId} />
+          <MenuContainer restaurantId={id} />
         </div>
       )}
 
       {!!reviews?.length && (
         <div>
           <h3>Reviews</h3>
-          <Reviews restaurantId={restaurantId} />
+          <ReviewsContainer restaurantId={id} />
         </div>
       )}
     </div>

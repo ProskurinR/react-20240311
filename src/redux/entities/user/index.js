@@ -1,5 +1,4 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-//import { normalizedUsers } from "../../../constants/normalized-mock";
 import { getUsers } from "./thunks/get-users";
 
 const entityAdapter = createEntityAdapter();

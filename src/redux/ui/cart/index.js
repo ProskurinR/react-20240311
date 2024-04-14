@@ -5,8 +5,8 @@ export const cartSlice = createSlice({
   initialState: {},
   reducers: {
     incrementProduct: (state, { payload: id }) => {
-      const product = state[id] || 0;
-      state[id] = product + 1;
+      const dish = state[id] || 0;
+      state[id] = dish + 1;
     },
 
     decrementProduct: (state, { payload: id }) => {
