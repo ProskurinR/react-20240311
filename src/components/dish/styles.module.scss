@@ -1,9 +1,11 @@
-.action {
-  &:first-child {
-    margin-right: 5px;
-  }
+.tab {
+  // &:first-child {
+  //   margin-right: 5px;
+  // }
 
-  &:last-child {
-    margin-left: 5px;
-  }
+  // &:last-child {
+  //   margin-left: 5px;
+  // }
+  color: rgb(158, 105, 6);
+  padding-bottom: 10px;
 }
