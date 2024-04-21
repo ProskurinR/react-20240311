@@ -1,15 +1,16 @@
-import { useSelector } from "react-redux";
-import { selectRestaurantById } from "../../redux/entities/restaurant/selectors";
-import { Tab } from "../tab/component";
+import { NavLink } from "react-router-dom";
+import styles from "./styles.module.css";
+import classNames from "classnames";
 
-export const RestaurantTabContainer = ({ restaurantId, ...props }) => {
-  const restaurant = useSelector((state) =>
-    selectRestaurantById(state, restaurantId)
+export const RestaurantTabContainer = ({ restaurant, className }) => {
+  return (
+    <NavLink
+      to={`/restaurants/${restaurant.id}`}
+      className={({ isActive }) =>
+        classNames(styles.tab, className, { [styles.active]: isActive })
+      }
+    >
+      {restaurant.name}
+    </NavLink>
   );
-
-  if (!restaurant) {
-    return null;
-  }
-
-  return <Tab {...props} title={restaurant.name} />;
 };

@@ -1,40 +1,13 @@
-import { SIZES } from "../../constants/sizes";
-import { Button } from "../button/component";
+import { NavLink } from "react-router-dom";
 import styles from "./styles.module.scss";
+import classNames from "classnames";
 
-export const Dish = ({
-  className,
-  dish,
-  user,
-  amount,
-  increment,
-  decrement,
-}) => {
+export const Dish = ({ dish }) => {
   return (
-    <div className={className}>
-      {dish.name}
-
-      {!!user && (
-        <div>
-          <Button
-            onClick={increment}
-            disabled={amount === 5}
-            size={SIZES.s}
-            className={styles.action}
-          >
-            +
-          </Button>
-          <span>{amount}</span>
-          <Button
-            onClick={decrement}
-            disabled={amount === 0}
-            size={SIZES.s}
-            className={styles.action}
-          >
-            –
-          </Button>
-        </div>
-      )}
+    <div className={classNames(styles.tab)}>
+      <NavLink to={`/dish/${dish.id}`} className={classNames(styles.tab)}>
+        {dish.name}
+      </NavLink>
     </div>
   );
 };

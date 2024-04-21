@@ -1,14 +1,20 @@
 /* eslint-disable react/jsx-key */
+import { useParams } from "react-router-dom";
+import { NewReviewForm } from "../new-review-form/component";
 import { ReviewContainer } from "../review/container";
 
-export const Reviews = ({ reviewIds }) => {
+export const Reviews = ({ reviews }) => {
+  const { restaurantId } = useParams();
   return (
-    <ul>
-      {reviewIds.map((reviewId) => (
-        <li>
-          <ReviewContainer reviewId={reviewId} />
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul>
+        {reviews.map((review) => (
+          <li>
+            <ReviewContainer review={review} />
+          </li>
+        ))}
+      </ul>
+      <NewReviewForm restaurantId={restaurantId} />
+    </div>
   );
 };
